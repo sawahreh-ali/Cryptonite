@@ -1,5 +1,9 @@
+import { homeView } from './home-view.js';
+
 $(document).ready(function() {
-    route('Home');
+    $.get( "https://api.coingecko.com/api/v3/coins/list", function( data ) {
+        route('Home', data);
+      });
     $('ul').on('click', 'li', function() {
         $('ul li').removeClass('active');
         $(this).addClass('active');
@@ -8,29 +12,11 @@ $(document).ready(function() {
     });
 });
 
-function route(view) {
+function route(view, assets) {
     if(view === 'Home')
-        homeView();
+        $('#app').html(homeView(assets));
     else if (view === 'Live Reports')
         liveReportsView();
     else if(view == 'About')
         aboutView();
-    else 
-        pageNotFoundView();
-}
-
-function homeView() {
-    $('#app').html('<h1>Home View Works</h1>');
-}
-
-function liveReportsView() {
-    $('#app').html('<h1>Live Reports View Works</h1>');
-}
-
-function aboutView() {
-    $('#app').html('<h1>About View Works</h1>');
-}
-
-function pageNotFoundView() {
-    $('#app').html('<h1>Page Not Found View Works</h1>');
 }
