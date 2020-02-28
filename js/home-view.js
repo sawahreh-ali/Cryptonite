@@ -15,7 +15,10 @@ var homeView = function(data) {
                 <span class="switch-handle"></span> 
               </label>
               <p class="card-text">${data[i].name}</p>
-              <button class="btn btn-primary">More Info...</button>
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i].id}">More Info...</button>
+              <div id="more-info-${data[i].id}" class="collapse">
+                ${moreInfo(data[i])}
+              </div>
             </div>
           </div>
         </div>
@@ -29,7 +32,10 @@ var homeView = function(data) {
                 <span class="switch-handle"></span> 
               </label>
               <p class="card-text">${data[i + 1].name}</p>
-              <button class="btn btn-primary">More Info...</button>
+              <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i + 1].id}">More Info...</button>
+              <div id="more-info-${data[i + 1].id}" class="collapse">
+                ${moreInfo(data[i + 1])}
+              </div>
             </div>
           </div>
         </div>
@@ -43,7 +49,10 @@ var homeView = function(data) {
                     <span class="switch-handle"></span> 
                   </label>
                   <p class="card-text">${data[i + 2].name}</p>
-                  <button class="btn btn-primary">More Info...</button>
+                  <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i + 2].id}">More Info...</button>
+                  <div id="more-info-${data[i + 2].id}" class="collapse">
+                    ${moreInfo(data[i + 2])}
+                  </div>
               </div>
           </div>
         </div>
@@ -52,5 +61,8 @@ var homeView = function(data) {
     }
     return innerHtml;
 };
-
+ function moreInfo(currency) {
+   console.log(currency.id);
+   return "From Function more info "+currency.id;
+ }
 export { homeView };
