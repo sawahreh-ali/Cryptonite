@@ -16,8 +16,10 @@ var homeView = function(data) {
               </label>
               <p class="card-text">${data[i].name}</p>
               <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i].id}">More Info...</button>
-              <div id="more-info-${data[i].id}" class="collapse">
-                ${moreInfo(data[i])}
+              <div id="more-info-${data[i].id}" class="collapse p-4">
+                ${moreInfo(data[i].id).then(html => {
+                  $(`#more-info-${data[i].id}`).html(html);
+                })}
               </div>
             </div>
           </div>
@@ -33,8 +35,10 @@ var homeView = function(data) {
               </label>
               <p class="card-text">${data[i + 1].name}</p>
               <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i + 1].id}">More Info...</button>
-              <div id="more-info-${data[i + 1].id}" class="collapse">
-                ${moreInfo(data[i + 1])}
+              <div id="more-info-${data[i + 1].id}" class="collapse p-4">
+                ${moreInfo(data[i + 1].id).then(html => {
+                  $(`#more-info-${data[i + 1].id}`).html(html);
+                })}
               </div>
             </div>
           </div>
@@ -50,8 +54,10 @@ var homeView = function(data) {
                   </label>
                   <p class="card-text">${data[i + 2].name}</p>
                   <button class="btn btn-primary" data-toggle="collapse" data-target="#more-info-${data[i + 2].id}">More Info...</button>
-                  <div id="more-info-${data[i + 2].id}" class="collapse">
-                    ${moreInfo(data[i + 2])}
+                  <div id="more-info-${data[i + 2].id}" class="collapse p-4">
+                    ${moreInfo(data[i + 2].id).then(html => {
+                      $(`#more-info-${data[i + 2].id}`).html(html);
+                    })}
                   </div>
               </div>
           </div>
@@ -61,8 +67,17 @@ var homeView = function(data) {
     }
     return innerHtml;
 };
- function moreInfo(currency) {
-   console.log(currency.id);
-   return "From Function more info "+currency.id;
+ async function moreInfo(id) {
+   let response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+   let json = await response.json();
+   let htmlText = `
+                  <ul class="list-group">
+                    <li class="list-group-item"><img src="${json.image.small}"></img></li>
+                    <li class="list-group-item">USD: ${json.market_data.current_price["usd"]}&#36;</li>
+                    <li class="list-group-item">EUR: ${json.market_data.current_price["eur"]}&#128;</li>
+                    <li class="list-group-item">ILS: ${json.market_data.current_price["ils"]}&#8362;</li>
+                  </ul>
+                  `;
+    return htmlText;
  }
 export { homeView };
