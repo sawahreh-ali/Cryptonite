@@ -1,6 +1,6 @@
 // Create home view
+let innerHtml = "";
 var homeView = function(data) {
-    let innerHtml = "";
     for(let i =0; i < 98; i+=3)
     {
         innerHtml += 
@@ -11,7 +11,7 @@ var homeView = function(data) {
             <div class="card-body">
               <h5 class="card-title">${data[i].symbol}</h5>
               <label class="switch switch-flat">
-                <input class="switch-input" type="checkbox" />
+                <input class="switch-input" type="checkbox" data-id="${data[i].id}" />
                 <span class="switch-label" data-on="On" data-off="Off"></span> 
                 <span class="switch-handle"></span> 
               </label>
@@ -30,7 +30,7 @@ var homeView = function(data) {
             <div class="card-body">
               <h5 class="card-title">${data[i + 1].symbol}</h5>
               <label class="switch switch-flat">
-                <input class="switch-input" type="checkbox" />
+                <input class="switch-input" type="checkbox" data-id="${data[i + 1].id}" />
                 <span class="switch-label" data-on="On" data-off="Off"></span> 
                 <span class="switch-handle"></span> 
               </label>
@@ -49,7 +49,7 @@ var homeView = function(data) {
               <div class="card-body">
                   <h5 class="card-title">${data[i + 2].symbol}</h5>
                   <label class="switch switch-flat">
-                    <input class="switch-input" type="checkbox" />
+                    <input class="switch-input" type="checkbox" data-id="${data[i + 2].id}" />
                     <span class="switch-label" data-on="On" data-off="Off"></span> 
                     <span class="switch-handle"></span> 
                   </label>
@@ -66,14 +66,7 @@ var homeView = function(data) {
       </div>
         `;
     }
-    // add event listener to checkboxes
-    $('input:checkbox').on("click", function(){
-      if($(this.prop("checked"))){
-          alert("checked");
-      } else {
-          alert("unchecked");
-      }
-  });
+    window.localStorage.setItem("homeView", innerHtml);
     return innerHtml;
 };
 
@@ -91,4 +84,23 @@ var homeView = function(data) {
                   `;
     return htmlText;
  }
-export { homeView };
+
+// add event listener to checkboxes
+let currenciesInLiveReports = [];
+$(document).on('click','input:checkbox',function(){
+  if(currenciesInLiveReports.length === 5 && $(this).prop("checked") === true){
+    alert("full");
+    $(this).prop("checked", false);
+  }
+  else if($(this).prop("checked") === true){
+    currenciesInLiveReports.push($(this)[0].attributes['data-id'].value);
+  }
+  else{
+    const index = currenciesInLiveReports.indexOf($(this)[0].attributes['data-id'].value);
+    if (index > -1) {
+      currenciesInLiveReports.splice(index, 1);
+    }
+  }
+});
+
+export { homeView, currenciesInLiveReports };
