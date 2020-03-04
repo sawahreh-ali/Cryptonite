@@ -1,3 +1,4 @@
+// Create home view
 var homeView = function(data) {
     let innerHtml = "";
     for(let i =0; i < 98; i+=3)
@@ -65,8 +66,18 @@ var homeView = function(data) {
       </div>
         `;
     }
+    // add event listener to checkboxes
+    $('input:checkbox').on("click", function(){
+      if($(this.prop("checked"))){
+          alert("checked");
+      } else {
+          alert("unchecked");
+      }
+  });
     return innerHtml;
 };
+
+// More Info handler
  async function moreInfo(id) {
    let response = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
    let json = await response.json();
