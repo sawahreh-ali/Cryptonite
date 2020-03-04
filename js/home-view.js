@@ -66,7 +66,6 @@ var homeView = function(data) {
       </div>
         `;
     }
-    window.localStorage.setItem("homeView", innerHtml);
     return innerHtml;
 };
 
