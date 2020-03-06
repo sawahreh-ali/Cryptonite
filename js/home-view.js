@@ -1,5 +1,6 @@
 // Create home view
 let innerHtml = "";
+import { modal } from './modal.js';
 var homeView = function(data) {
     for(let i =0; i < 98; i+=3)
     {
@@ -66,7 +67,7 @@ var homeView = function(data) {
       </div>
         `;
     }
-    return innerHtml;
+    return innerHtml + modal;
 };
 
 // More Info handler
@@ -88,8 +89,8 @@ var homeView = function(data) {
 let currenciesInLiveReports = [];
 $(document).on('click','input:checkbox',function(){
   if(currenciesInLiveReports.length === 5 && $(this).prop("checked") === true){
-    alert("full");
     $(this).prop("checked", false);
+    $('#maxLimitModal').modal('show');
   }
   else if($(this).prop("checked") === true){
     currenciesInLiveReports.push($(this)[0].attributes['data-id'].value);
