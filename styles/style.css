@@ -151,3 +151,26 @@ header > img {
 	background: #0088cc;
 	box-shadow: none;
 }
+
+/* User Styles */
+.card-user {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	margin: auto;
+	text-align: center;
+  }
+  
+  .title-user {
+	color: grey;
+	font-size: 18px;
+  }
+  
+  
+  .a-user {
+	text-decoration: none;
+	font-size: 22px;
+	color: black;
+  }
+  
+  .button-user:hover, .a-user:hover {
+	opacity: 0.7;
+  }
