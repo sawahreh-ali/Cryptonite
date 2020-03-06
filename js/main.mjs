@@ -1,4 +1,4 @@
-import { homeView } from './home-view.js';
+import { homeView, currenciesInLiveReports } from './home-view.js';
 import { liveReportsView, draw } from './live-report-view.js';
 import { aboutView } from './about-view.js';
 
@@ -36,7 +36,7 @@ function route(view) {
     }
     else if (view === 'Live Reports'){
         $('#app').html(liveReportsView);
-        draw();
+        draw(currenciesInLiveReports);
     }
     else if(view == 'About'){
         $('#app').html(aboutView);
