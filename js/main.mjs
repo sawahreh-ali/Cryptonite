@@ -1,4 +1,5 @@
 import { homeView } from './home-view.js';
+import { liveReportsView, draw } from './live-report-view.js';
 
 $(document).ready(function() {
     route('Home');
@@ -32,16 +33,14 @@ function route(view) {
             $('#app').html(homeView(data));
         });
     }
-    else if (view === 'Live Reports')
-        liveReportsView();
+    else if (view === 'Live Reports'){
+        $('#app').html(liveReportsView);
+        draw();
+    }
     else if(view == 'About')
         aboutView();
 }
 
-function liveReportsView() {
-    $('#app').html('');
-    alert("Live Reports");
-}
 function aboutView() {
     $('#app').html('');
     alert("About");

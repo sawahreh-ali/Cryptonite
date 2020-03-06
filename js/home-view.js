@@ -12,7 +12,7 @@ var homeView = function(data) {
             <div class="card-body">
               <h5 class="card-title">${data[i].symbol}</h5>
               <label class="switch switch-flat">
-                <input class="switch-input" type="checkbox" data-id="${data[i].id}" />
+                <input class="switch-input" type="checkbox" data-id="${data[i].symbol}" />
                 <span class="switch-label" data-on="On" data-off="Off"></span> 
                 <span class="switch-handle"></span> 
               </label>
@@ -31,7 +31,7 @@ var homeView = function(data) {
             <div class="card-body">
               <h5 class="card-title">${data[i + 1].symbol}</h5>
               <label class="switch switch-flat">
-                <input class="switch-input" type="checkbox" data-id="${data[i + 1].id}" />
+                <input class="switch-input" type="checkbox" data-id="${data[i + 1].symbol}" />
                 <span class="switch-label" data-on="On" data-off="Off"></span> 
                 <span class="switch-handle"></span> 
               </label>
@@ -50,7 +50,7 @@ var homeView = function(data) {
               <div class="card-body">
                   <h5 class="card-title">${data[i + 2].symbol}</h5>
                   <label class="switch switch-flat">
-                    <input class="switch-input" type="checkbox" data-id="${data[i + 2].id}" />
+                    <input class="switch-input" type="checkbox" data-id="${data[i + 2].symbol}" />
                     <span class="switch-label" data-on="On" data-off="Off"></span> 
                     <span class="switch-handle"></span> 
                   </label>
